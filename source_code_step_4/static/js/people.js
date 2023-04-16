@@ -29,14 +29,27 @@ class CreatePersonForm {
   }
 
   addPersonToList(rawData) {
+  // Lets see what this rawData is.
+
+//  [Log] { (people.js, line 33)
+//  "fname": "Cringe",
+//  "id": 10,
+//  "lname": "Machine",
+//  "notes": [],
+//  "timestamp": "2023-04-16T19:15:05.739636"
+//}
+
+    //console.log(rawData)
     const data = JSON.parse(rawData);
+        //Simplifies it into JSON
+    // console.log(document.querySelectorAll("*"))
+        //This prints the entire html code of all pages combined into one
+    const personCard = document.querySelector(".person-card").cloneNode(true); //clones it.
+    const personContent = personCard.querySelector(".person-content"); //edit the clone.
 
-    const personCard = document.querySelector(".person-card").cloneNode(true);
-    const personContent = personCard.querySelector(".person-content");
-
-    const personFirstName = personContent.querySelector("[data-person-fname]");
+    const personFirstName = personContent.querySelector("[data-person-fname]"); //This is a CSS Selector
     personFirstName.textContent = data.fname;
-    personFirstName.setAttribute("data-person-fname", data.fname);
+    personFirstName.setAttribute("data-person-fname", data.fname); //sets that value to that.
 
     const personLastName = personContent.querySelector("[data-person-lname]");
     personLastName.textContent = data.lname;
