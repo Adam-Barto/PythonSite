@@ -6,14 +6,18 @@ from config import db, ma
 
 
 class Note(db.Model):
-    __tablename__ = "note"
+    __tablename__ = "note" # Rows of the 'note' table map to here.
+    # print(db.metadata)
+    # print(db.Integer)
     id = db.Column(db.Integer, primary_key=True)
     person_id = db.Column(db.Integer, db.ForeignKey("person.id"))
     content = db.Column(db.String, nullable=False)
     timestamp = db.Column(
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
     )
-
+# This is what logs the note, the db has datas and times in it?
+# I suspect that it is setting it up, then isn't called again,
+# like building blocks...
 
 class NoteSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
